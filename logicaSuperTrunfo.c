@@ -104,6 +104,11 @@ int main() {
     float superpoder1 = (float) populacao1 + area1 + pib1 + (float) pontosturisticos1 + pibcapita1 + (area1 / (float) populacao1);
     float superpoder2 = (float) populacao2 + area2 + pib2 + (float) pontosturisticos2 + pibcapita2 + (area2 / (float) populacao2);
 
+// Contar qual carta venceu mais vezes:
+    short int pontuacao1 = 0;
+    short int pontuacao2 = 0;
+
+
 
     // Exibição dos Resultados:
     // Após realizar as comparações, exiba os resultados para o usuário.
@@ -124,39 +129,109 @@ int main() {
 
     printf("\n --- HORA DE COMPARAR AS CARTAS ---\n");
 
-    printf("\nPopulação: Carta 1 (%lu) VS Carta 2 (%lu)\n", populacao1, populacao2);
+    printf("\nPopulação: Carta 1 (%lu habitantes) VS Carta 2 (%lu habitantes)\n", populacao1, populacao2);
     if (populacao1 == populacao2) {
         printf("As cidades possuem a mesma população, ninguém venceu!\n");
     } else{
         if(populacao1 > populacao2) {
             printf ("Carta 1 possui a população maior que a carta 2, carta 1 venceu!\n");
+            pontuacao1++;
         } else {
             printf("Carta 2 possui a população maior que a carta 1, carta 2 venceu!\n");
+            pontuacao2++;
     }}
 
-    printf("Área: Carta 1 (%.2f) VS Carta 2 (%.2f)\n", area1, area2);
+    printf("\nÁrea: Carta 1 (%.2f km²) VS Carta 2 (%.2fkm²)\n", area1, area2);
     if (area1 == area2) {
         printf("As cidades têm o mesmo tamanho, ninguém venceu!\n");
     } else {
         if (area1 > area2) {
             printf("%s é maior! Carta 1 venceu!\n", cidade1);
+            pontuacao1++;
         } else {
             printf ("%s é maior! Carta 2 venceu!\n", cidade2);
+            pontuacao2++;
         }
     }
 
-    printf("PIB: Carta 1 (%.2f) VS Carta 2 (%.2f)\n")
+    printf("\nPIB: Carta 1 (%.2f bilhões) VS Carta 2 (%.2f bilhões)\n", pib1, pib2);
     if (pib1 == pib2) {
         printf("%s e %s têm o mesmo PIB, ninguém venceu!\n", cidade1, cidade2);
     } else {
         if (pib1 > pib2) {
             printf("O PIB da carta 1 é maior, %s venceu!\n", cidade1);
+            pontuacao1++;
         } else {
-            printf("O PIB da carta 2 é maior, %s venceu!\n", cidade2):
+            printf("O PIB da carta 2 é maior, %s venceu!\n", cidade2);
+            pontuacao2++;
         }
     }
 
+    printf("\nPontos Turísticos: %s (%d) VS %s (%d)\n", cidade1, pontosturisticos1, cidade2, pontosturisticos2);
+    if (pontosturisticos1 == pontosturisticos2) {
+        printf("Ninguém venceu, %s e %s têm a mesma quantidade de pontos turísticos!\n", cidade1, cidade2);
+    } else {
+        if (pontosturisticos1 > pontosturisticos2) {
+            printf("A Carta 1 têm mais pontos turísticos. %s venceu!\n", cidade1);
+            pontuacao1++;
+        } else {
+            printf("A Carta 2 têm mais pontos turísticos, %s venceu!\n", cidade2);
+            pontuacao2++;
+        }
+    }
+
+    printf("\nDensidade Populacional: Carta 1 (%.3f habitantes por km²) VS Carta 2 (%.3f habitantes por km²)\n", densidade1, densidade2);
+    if (densidade1 == densidade2) {
+        printf("As cidades têm a mesma densidade populacional, ninguém venceu!\n");
+    } else {
+        if (densidade1 < densidade2) {
+            printf("A densidade populacional da Carta 1 é menor, %s venceu!\n", cidade1);
+            pontuacao1++;
+        } else {
+            printf("A densidade populacional da Carta 2 é menor, %s venceu!\n", cidade2);
+            pontuacao2++;
+        }
+    }
+
+    printf("\nPIB per capita: %s (R$%.3f por habitante) VS %s (R$%.3f por habitante)\n", cidade1, pibcapita1, cidade2, pibcapita2);
+    if (pibcapita1 == pibcapita2) {
+        printf("A riqueza per capita de ambas as cidades é igual, ninguém venceu!\n");
+    } else {
+        if (pibcapita1 > pibcapita2) {
+            printf("%s é mais rica, Carta 1 venceu!\n", cidade1);
+            pontuacao1++; 
+        } else {
+            printf("%s é mais rico, Carta 2 venceu!\n", cidade2);
+            pontuacao2++;
+        }
+    }
+
+        printf("\n!!! SUPER PODER !!!!\nCarta 1 (%.4f de poder) VS Carta 2 (%.4f de poder)\n", superpoder1, superpoder2);
+        if (superpoder1 == superpoder2) {
+            printf("!!! AS CARTAS EMPATARAM !!!\n");
+        } else {
+            if (superpoder1 > superpoder2) {
+                printf("!!! %s VENCEU, DOIS PONTOS PARA A CARTA 1 !!!\n", cidade1);
+                pontuacao1+=2;
+            } else {
+                printf("!!! %s VENCEU, DOIS PONTOS PARA A CARTA 2 !!!\n", cidade2);
+                pontuacao2+=2;
+            }
+        }
+
+        printf("\n--- HORA DE VERMOS QUEM VENCE: CARTA 1 OU CARTA 2? ---\n");
+        printf("Carta 1 - %s: fez %d pontos!\n", cidade1, pontuacao1);
+        printf("Carta 2 - %s: fez %d pontos!\n", cidade2, pontuacao2);
+        if (pontuacao1 == pontuacao2) {
+            printf("AS DUAS TÊM A MESMA PONTUAÇÃO, NINGUÉM VENCEU! JOGUE NOVAMENTE!");
+        } else {
+            if (pontuacao1 > pontuacao2) {
+                printf("%s FEZ MAIS PONTOS, CARTA 1 VENCEU! FIM DE JOGO.", cidade1);
+            } else {
+                printf("%s FEZ MAIS PONTOS, CARTA 2 VENCEU! FIM DE JOGO.", cidade2);
+            }
+        }
 
 
     return 0;
-}
+    }
