@@ -211,6 +211,8 @@ int main() {
             }
         }
             Deixei como comentário pois não está sendo utilizado
+
+            Utilizado loop com do {} while () para repetir o código caso o usuário selecione um input que não é válido
 */
 
     return 0;
